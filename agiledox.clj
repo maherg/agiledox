@@ -1,6 +1,6 @@
 (use 'clojure.java.io)
 
-(defn java-test-file? [file] (.matches (.getName file) ".*[Tt]est.*\\.java"))
+(defn java-test-file? [file] (.matches (.getName file) ".*([Tt]est|[Ss]hould).*\\.java"))
 (defn java-test-files [dirname]
   (filter java-test-file? (file-seq (as-file dirname))))
 
