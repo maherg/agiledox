@@ -1,1 +1,1 @@
-clj PATH_TO_AGILEDOX/agiledox.clj
+clj "$(dirname $0)/agiledox.clj"
