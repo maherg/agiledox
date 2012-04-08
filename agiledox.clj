@@ -1,6 +1,6 @@
 (use 'clojure.java.io)
 
-(defn java-test-file? [file] (.matches (.getName file) ".*([Tt]est|[Ss]hould).*\\.java"))
+(defn java-test-file? [file] (.matches (.getName file) ".*\\.java"))
 (defn java-test-files [dirname]
   (filter java-test-file? (file-seq (as-file dirname))))
 
@@ -14,7 +14,7 @@
   (Testfile. (.getName file) (test-lines file)))
 
 (defn as-header [filename]
-  (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" ""))
+  (.trim (.replaceAll (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" "") "([A-Z])" " $1")))
 
 (defn as-feature [line]
   (.toLowerCase (.replaceAll line "([A-Z])" " $1")))
